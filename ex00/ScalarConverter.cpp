@@ -15,11 +15,79 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other){
 ScalarConverter::~ScalarConverter(){
     std::cout << "ScalarConverter destructor called" << std::endl;
 }
+
+int check_integer(const std::string& literal)
+{
+    int i = 0;
+    if (literal.find('.') != std::string::npos || literal.find('f') != std::string::npos)
+        return 1;
+    if ((literal[0] == '+' || literal[0] == '-') && literal[1] != '\0')
+        i++;
+    while (literal[i])
+    {
+        if (!isdigit(literal[i]))
+            return 1;
+        i++;
+    }
+    return 0;
+}
+
+int check_float(const std::string& literal)
+{
+    int i = 0;
+    int count_dot = 0;
+    int count_digit = 0;
+    if (literal.find('.') != std::string::npos && literal[literal.size() - 1] == 'f')
+    {
+        if ((literal[0] == '+' || literal[0] == '-') && literal[1] != '\0')
+            i++;
+        while (i < static_cast<int>(literal.size()) - 1)
+        {
+            if (literal[i] == '.')
+                count_dot++;
+            else if (isdigit(literal[i]))
+                count_digit++;
+            else
+                return 1;
+            i++;
+        }
+        if (count_dot != 1 || count_digit == 0)
+            return 1;
+        return 0;
+    }
+    return 1;
+}
+int check_double(const std::string& literal)
+{
+    int i = 0;
+    int count_dot = 0;
+    int count_digit = 0;
+    if (literal.find('.') != std::string::npos)
+    {
+        if ((literal[0] == '+' || literal[0] == '-') && literal[1] != '\0')
+            i++;
+        while (i < static_cast<int>(literal.size()))
+        {
+            if (literal[i] == '.')
+                count_dot++;
+            else if (isdigit(literal[i]))
+                count_digit++;
+            else
+                return 1;
+            i++;
+        }
+        if (count_dot != 1 || count_digit == 0)
+            return 1;
+        return 0;
+    }
+    return 1;
+}
+
 int checkType(const std::string& literal){
     if (literal.empty()) {
         return -1; 
     }
-    if ((literal[0] >= '0' && literal[0] <= '9') || literal[0] == '-' || literal[0] == '+') {
+    if (check_integer(literal)) {
         return 1; 
     }
     if (literal.length() == 1 && !isdigit(literal[0])) {
@@ -29,10 +97,10 @@ int checkType(const std::string& literal){
         literal == "nanf" || literal == "inff" || literal == "-inff") {
         return 3;
     }
-    if (literal.find('.') != std::string::npos || literal.find('f') != std::string::npos) {
+    if (check_float(literal)) {
         return 4; 
     }
-    if (literal.find('.') != std::string::npos) {
+    if (check_double(literal)) {
         return 5;
     }
     return 0;
