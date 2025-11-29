@@ -14,8 +14,14 @@ void convertFromInt(const std::string& literal)
         std::cout << "Non displayable" << std::endl;
     
     std::cout << "int: " << value << std::endl;
-    std::cout << "float: " << f << "f" << std::endl;
-    std::cout << "double: " << d << std::endl;
+    if (f == static_cast<int>(f))
+        std::cout << "float: " << f << ".0f" << std::endl;
+    else
+        std::cout << "float: " << f << "f" << std::endl;
+    if (d == static_cast<int>(d))
+        std::cout << "double: " << d << ".0" << std::endl;
+    else
+        std::cout << "double: " << d << std::endl;
 }
 void convertFromChar(const std::string& literal)
 {
@@ -63,8 +69,14 @@ void convertFromFloat(const std::string& literal)
         std::cout << "Non displayable" << std::endl;
 
     std::cout << "int: " << i << std::endl;
-    std::cout << "float: " << value << "f" << std::endl;
-    std::cout << "double: " << d << std::endl;
+    if (value == static_cast<int>(value))
+        std::cout << "float: " << value << ".0f" << std::endl;
+    else
+        std::cout << "float: " << value << "f" << std::endl;
+    if (d == static_cast<int>(d))
+        std::cout << "double: " << d << ".0" << std::endl;
+    else
+        std::cout << "double: " << d << std::endl;
 }
 
 void convertFromDouble(const std::string& literal)
@@ -81,6 +93,12 @@ void convertFromDouble(const std::string& literal)
         std::cout << "Non displayable" << std::endl;
 
     std::cout << "int: " << i << std::endl;
-    std::cout << "float: " << f << "f" << std::endl;
-    std::cout << "double: " << value << std::endl;
+    if (f == static_cast<int>(f))
+        std::cout << "float: " << f << ".0f" << std::endl;
+    else
+        std::cout << "float: " << f << "f" << std::endl;
+    if (value == static_cast<int>(value))
+        std::cout << "double: " << value << ".0" << std::endl;
+    else
+        std::cout << "double: " << value << std::endl;
 }
