@@ -26,7 +26,7 @@ int check_integer(const std::string& literal)
     while (literal[i])
     {
         if (!isdigit(literal[i]))
-            return 1;
+            return 6;
         i++;
     }
     return 0;
@@ -48,11 +48,11 @@ int check_float(const std::string& literal)
             else if (isdigit(literal[i]))
                 count_digit++;
             else
-                return 1;
+                return 6;
             i++;
         }
         if (count_dot != 1 || count_digit == 0)
-            return 1;
+            return 6;
         return 0;
     }
     return 1;
@@ -73,22 +73,19 @@ int check_double(const std::string& literal)
             else if (isdigit(literal[i]))
                 count_digit++;
             else
-                return 1;
+                return 6;
             i++;
         }
         if (count_dot != 1 || count_digit == 0)
-            return 1;
+            return 6;
         return 0;
     }
-    return 1;
+    return 6;
 }
 
 int checkType(const std::string& literal){
     if (literal.empty()) {
         return -1; 
-    }
-    if (check_integer(literal)) {
-        return 1; 
     }
     if (literal.length() == 1 && !isdigit(literal[0])) {
         return 2; 
@@ -96,6 +93,9 @@ int checkType(const std::string& literal){
     if (literal == "nan" || literal == "inf" || literal == "-inf" ||
         literal == "nanf" || literal == "inff" || literal == "-inff") {
         return 3;
+    }
+    if (check_integer(literal)) {
+        return 1; 
     }
     if (check_float(literal)) {
         return 4; 
@@ -109,6 +109,7 @@ int checkType(const std::string& literal){
 void ScalarConverter::convert(const std::string& literal)
 {
     int type = checkType(literal);
+    std::cout << "Detected type code: " << type << std::endl;
     if (type == 1)
     {
         convertFromInt(literal);
