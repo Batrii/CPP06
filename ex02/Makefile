@@ -1,9 +1,9 @@
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Serializer.cpp main.cpp
+SRCS = Base.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = Serializer
+NAME = Base
 
 all: $(NAME)
 

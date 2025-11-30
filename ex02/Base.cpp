@@ -35,17 +35,20 @@ void identify(Base& p){
     try{
         A& first = dynamic_cast<A&>(p);
         std::cout << "type of object is A" << std::endl;
+        (void)first;
     }catch(const std::exception &e)
     {
         try{
             B& second = dynamic_cast<B&>(p);
             std::cout << "type of object is B" << std::endl;
+            (void)second;
         }
         catch(const std::exception &e)
         {
             try{
                 C& third = dynamic_cast<C&>(p);
                 std::cout << "type of object is C" << std::endl;
+                (void)third;
             }
             catch(const std::exception &e)
             {
