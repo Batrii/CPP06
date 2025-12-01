@@ -20,7 +20,7 @@ int check_integer(const std::string& literal)
 {
     int i = 0;
     if (literal.find('.') != std::string::npos || literal.find('f') != std::string::npos)
-        return 1;
+        return 6;
     if ((literal[0] == '+' || literal[0] == '-') && literal[1] != '\0')
         i++;
     while (literal[i])
@@ -55,7 +55,7 @@ int check_float(const std::string& literal)
             return 6;
         return 0;
     }
-    return 1;
+    return 6;
 }
 int check_double(const std::string& literal)
 {
@@ -91,16 +91,17 @@ int checkType(const std::string& literal){
         return 2; 
     }
     if (literal == "nan" || literal == "inf" || literal == "-inf" ||
-        literal == "nanf" || literal == "inff" || literal == "-inff") {
+        literal == "nanf" || literal == "inff" || literal == "-inff" ||
+        literal == "+inf"  || literal == "+inff") {
         return 3;
     }
-    if (check_integer(literal)) {
+    if (check_integer(literal) != 6) {
         return 1; 
     }
-    if (check_float(literal)) {
+    if (check_float(literal) != 6) {
         return 4; 
     }
-    if (check_double(literal)) {
+    if (check_double(literal) != 6) {
         return 5;
     }
     return 0;

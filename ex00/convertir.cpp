@@ -2,7 +2,7 @@
 
 void convertFromInt(const std::string& literal)
 {
-    int value = std::atoi(literal.c_str());
+    long value = std::atol(literal.c_str());
     char c = static_cast<char>(value);
     float f = static_cast<float>(value);
     double d = static_cast<double>(value);
@@ -10,10 +10,14 @@ void convertFromInt(const std::string& literal)
     std::cout << "char: ";
     if (isprint(c))
         std::cout << "'" << c << "'" << std::endl;
+    else if (static_cast<int>(c) < 127 || static_cast<int>(c) > 0)
+        std::cout << "impossible" << std::endl;
     else
         std::cout << "Non displayable" << std::endl;
-    
-    std::cout << "int: " << value << std::endl;
+    if (value > INT_MAX)
+        std::cout << "int: impossible" << std::endl;
+    else
+        std::cout << "int: " << value << std::endl;
     if (f == static_cast<int>(f))
         std::cout << "float: " << f << ".0f" << std::endl;
     else
@@ -50,7 +54,7 @@ void convertFromSpecial(const std::string& literal)
         std::cout << "float: nanf" << std::endl;
         std::cout << "double: nan" << std::endl;
     }
-    else if (literal == "inf" || literal == "inff")
+    else if (literal == "inf" || literal == "inff" || literal == "+inf" || literal == "+inff")
     {
         std::cout << "float: inff" << std::endl;
         std::cout << "double: inf" << std::endl;
@@ -71,6 +75,8 @@ void convertFromFloat(const std::string& literal)
     std::cout << "char: ";
     if (isprint(c))
         std::cout << "'" << c << "'" << std::endl;
+    else if (static_cast<int>(c) < 127 || static_cast<int>(c) > 0)
+        std::cout << "char: impossible" << std::endl;
     else
         std::cout << "Non displayable" << std::endl;
 
@@ -95,6 +101,8 @@ void convertFromDouble(const std::string& literal)
     std::cout << "char: ";
     if (isprint(c))
         std::cout << "'" << c << "'" << std::endl;
+    else if (static_cast<int>(c) < 127 || static_cast<int>(c) > 0)
+        std::cout << "char: impossible" << std::endl;
     else
         std::cout << "Non displayable" << std::endl;
 
