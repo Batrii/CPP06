@@ -13,5 +13,17 @@ int main()
 
     identify(base);
     identify(base2);
+    delete base;
+
+    // -------------------------
+        A a;
+        B b;
+        C c;
+        identify(&a);
+        identify(&b);
+        identify(&c);
+        identify(a);
+        identify(b);
+        identify(c);
     return 0;
 }
