@@ -75,7 +75,7 @@ void convertFromFloat(const std::string& literal)
     std::cout << "char: ";
     if (isprint(c))
         std::cout << "'" << c << "'" << std::endl;
-    else if (static_cast<int>(c) < 127 || static_cast<int>(c) > 0)
+    else if (static_cast<int>(c) > 127 || static_cast<int>(c) < 0)
         std::cout << "char: impossible" << std::endl;
     else
         std::cout << "Non displayable" << std::endl;
