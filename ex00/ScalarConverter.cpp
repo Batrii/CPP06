@@ -110,7 +110,6 @@ int checkType(const std::string& literal){
 void ScalarConverter::convert(const std::string& literal)
 {
     int type = checkType(literal);
-    std::cout << "Detected type code: " << type << std::endl;
     if (type == 1)
     {
         convertFromInt(literal);
