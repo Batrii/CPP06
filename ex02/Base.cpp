@@ -29,6 +29,8 @@ void identify(Base* p){
         std::cout << "type of object is B" << std::endl;
     if (third != NULL)
         std::cout << "type of object is C" << std::endl;
+    if (first == NULL && second == NULL && third == NULL)
+        std::cout << "no type is matched" << std::endl;
 }
 
 void identify(Base& p){
