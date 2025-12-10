@@ -14,7 +14,7 @@ void convertFromInt(const std::string& literal)
         std::cout << "impossible" << std::endl;
     else
         std::cout << "Non displayable" << std::endl;
-    if (value > INT_MAX)
+    if (value > INT_MAX || value < INT_MIN)
         std::cout << "int: impossible" << std::endl;
     else
         std::cout << "int: " << value << std::endl;
